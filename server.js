@@ -19,7 +19,7 @@ app.use('/users', Users);
 
 var connection = mysql.createPool({
     connectionLimit: 100,
-    host: 'localhost',
+    host: process.env.MYSQL_SERVICE_HOST,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
@@ -32,6 +32,7 @@ console.log("PRE DEBUG DES ENVIRONMENTS");
 console.log(process.env.MYSQL_USER);
 console.log(process.env.MYSQL_PASSWORD);
 console.log(process.env.MYSQL_DATABASE);
+console.log(process.env.MYSQL_SERVICE_HOST);
 console.log("END // PRE DEBUG DES ENVIRONMENTS");
 
 

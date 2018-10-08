@@ -28,11 +28,11 @@ var connection = mysql.createPool({
     multipleStatements: true
 });
 
-console.log("PRE DEBUG DES ENVIRONMENTS")
+console.log("PRE DEBUG DES ENVIRONMENTS");
 console.log(MYSQL_USER);
 console.log(MYSQL_PASSWORD);
 console.log(MYSQL_DATABASE);
-console.log("END // PRE DEBUG DES ENVIRONMENTS")
+console.log("END // PRE DEBUG DES ENVIRONMENTS");
 
 connection.getConnection(function (err, connection) {
     if (err) {

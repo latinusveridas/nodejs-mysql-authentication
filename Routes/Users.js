@@ -24,18 +24,22 @@ users.post('/register', function(req, res) {
         "created": today
     }
 
-    database.connection.getConnection(function(err, connection) {
+    database.connection.getConnection(function (err, connection) {
+        console.log("FUNCTION DATABASE STARTED !!!")
         if (err) {
             appData["error"] = 1;
             appData["data"] = "Internal Server Error";
             res.status(500).json(appData);
         } else {
+            console.log("OK");
             connection.query('INSERT INTO users SET ?', userData, function(err, rows, fields) {
                 if (!err) {
                     appData.error = 0;
                     appData["data"] = "User registered successfully!";
                     res.status(201).json(appData);
+                    console.log("PB");
                 } else {
+                    console.log("PB");
                     appData["data"] = "Error Occured!";
                     res.status(400).json(appData);
                 }

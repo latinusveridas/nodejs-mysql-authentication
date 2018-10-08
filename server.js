@@ -52,6 +52,8 @@ connection.getConnection(function (err, conn) {
 
 app.get('/showdatabases', function (req, res) {
 
+    console.log("INSIDE DATABASES FUNCTION")
+
     connection.getConnection(function (err, conn) {
 
         if (err) throw err;

@@ -1,4 +1,4 @@
-var mysql = require('mysql');
+/*var mysql = require('mysql');
 
 var connection = mysql.createPool({
     connectionLimit: 100,
@@ -11,4 +11,4 @@ var connection = mysql.createPool({
     multipleStatements: true
 });
 
-module.exports.connection = connection;
+module.exports.connection = connection;*/

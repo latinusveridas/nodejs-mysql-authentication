@@ -48,6 +48,8 @@ connection.getConnection(function (err, conn) {
 
 });
 
+
+
 app.get('/showdatabases', function (req, res) {
 
     connection.getConnection(function (err, conn) {
@@ -68,9 +70,3 @@ app.get('/showdatabases', function (req, res) {
 app.listen(port,function(){
     console.log("Server is running on port: " + port);
 });
-
-connection.query('SHOW DATABASES', function (err, results) {
-    if (err) throw err;
-    console.log(results);
-    console.log('END OF QUERY')
-    res.json(results);

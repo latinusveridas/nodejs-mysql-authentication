@@ -15,13 +15,11 @@ var Users = require('./Routes/Users');
 
 app.use('/users',Users);
 
-users.get('/testdb', function (req, res) {
+app.get('/testdb', function (req, res) {
 
     database.connection.getConnection(function (err, connection) {
         if (err) {
-            appData["error"] = 1;
-            appData["data"] = "Internal Server Error";
-            res.status(500).json(appData);
+            console.log("DATABASE PROBLEM");
         } else {
             console.log("Connection Successful !!!")
 

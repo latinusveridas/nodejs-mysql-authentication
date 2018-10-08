@@ -36,7 +36,7 @@ console.log(process.env.MYSQL_SERVICE_HOST);
 console.log("END // PRE DEBUG DES ENVIRONMENTS");
 
 
-connection.getConnection(function (err, connection) {
+connection.getConnection(function (err, conn) {
     if (err) {
         //connection.release();
         console.log("PB CONNECTING DB");
@@ -49,13 +49,28 @@ connection.getConnection(function (err, connection) {
 });
 
 app.get('/showdatabases', function (req, res) {
-    connection.query('SHOW DATABASES', function (err, results) {
+
+    connection.getConnection(function (err, conn) {
+
         if (err) throw err;
-        console.log(results);
-        console.log('END OF QUERY')
-        res.json(results);
+        console.log(err);
+
+        conn.query('SHOW DATABASES', function (err, results) {
+            if (err) throw err;
+            console.log(results);
+            console.log('END OF QUERY');
+        });
+
+    });
+
 });
 
 app.listen(port,function(){
     console.log("Server is running on port: " + port);
 });
+
+connection.query('SHOW DATABASES', function (err, results) {
+    if (err) throw err;
+    console.log(results);
+    console.log('END OF QUERY')
+    res.json(results);

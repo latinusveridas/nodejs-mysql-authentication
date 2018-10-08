@@ -28,11 +28,7 @@ var connection = mysql.createPool({
     multipleStatements: true
 });
 
-console.log("PRE DEBUG DES ENVIRONMENTS");
-console.log(MYSQL_USER);
-console.log(MYSQL_PASSWORD);
-console.log(MYSQL_DATABASE);
-console.log("END // PRE DEBUG DES ENVIRONMENTS");
+
 
 connection.getConnection(function (err, connection) {
     if (err) {
@@ -47,5 +43,10 @@ connection.getConnection(function (err, connection) {
 });
 
 app.listen(port,function(){
-    console.log("Server is running on port: "+port);
+    console.log("Server is running on port: " + port);
+    console.log("PRE DEBUG DES ENVIRONMENTS");
+    console.log(MYSQL_USER);
+    console.log(MYSQL_PASSWORD);
+    console.log(MYSQL_DATABASE);
+    console.log("END // PRE DEBUG DES ENVIRONMENTS");
 });

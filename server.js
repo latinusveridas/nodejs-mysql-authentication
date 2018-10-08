@@ -12,7 +12,16 @@ app.use(bodyParser.urlencoded({
 
 var Users = require('./Routes/Users');
 
-app.use('/users',Users);
+app.use('/users', Users);
+
+connection.getConnection(function (err, connection) {
+    if (err) {
+        connection.release();
+        console.log("PB CONNECTING DB");
+        return;
+    } else {
+        console.log("DEBUG: SEEMS TO WORK");
+    }
 
 app.listen(port,function(){
     console.log("Server is running on port: "+port);

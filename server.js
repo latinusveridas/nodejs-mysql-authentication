@@ -52,7 +52,7 @@ connection.getConnection(function (err, conn) {
 
 app.get('/showdatabases', function (req, res) {
 
-    console.log("INSIDE DATABASES FUNCTION")
+    console.log("INSIDE DATABASES FUNCTION");
 
     connection.getConnection(function (err, conn) {
 

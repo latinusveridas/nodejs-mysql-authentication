@@ -30,7 +30,7 @@ var connection = mysql.createPool({
 
 connection.getConnection(function (err, connection) {
     if (err) {
-        connection.release();
+        //connection.release();
         console.log("PB CONNECTING DB");
         return;
     } else {

@@ -17,7 +17,7 @@ var Users = require('./Routes/Users');
 app.use('/users', Users);
 */
 
-var connection = mysql.createPool({
+var pool = mysql.createPool({
     connectionLimit: 100,
     host: process.env.MYSQL_SERVICE_HOST,
     user: process.env.MYSQL_USER,
@@ -51,35 +51,33 @@ console.log("END // PRE DEBUG DES ENVIRONMENTS");
 
 app.get('/', function (req, res) {
     res.send("Hello World !");
-});
+})
 
 
-//app.get('/showdatabases', function (req, res) {
-
-//    console.log("INSIDE DATABASES FUNCTION");
-
-connection.getConnection(function (err, conn)
-{
-    if (err)
+app.get('/showdatabases', function (req, res) {
+console.log("INSIDE DATABASES FUNCTION");
+    pool.getConnection(function (err, conn)
     {
-        throw err;
-    }
-    else
-    {
-            conn.query('SHOW DATABASES', function (err, results) {
-                if (err) throw err;
-                console.log(results);
-                console.log('END OF QUERY');
-                res.json(results);
-            });
-
-            connection.release();
-    }
-
-});
-
-
-//});
+        if (err)
+        {
+            throw err;
+        }
+        else
+        {
+            conn.query('SHOW DATABASES', function (err2, results)
+            {
+                if (err2) {
+                    throw err2;
+                } else {
+                    console.log(results);
+                    console.log('END OF QUERY');
+                    res.json(results);
+                }
+                connection.release();
+            })
+        }
+    })
+})
 
 app.listen(port,function(){
     console.log("Server is running on port: " + port);

@@ -36,7 +36,7 @@ console.log(process.env.MYSQL_SERVICE_HOST);
 console.log("END // PRE DEBUG DES ENVIRONMENTS");
 
 
-connection.getConnection(function (err, conn) {
+/*connection.getConnection(function (err, conn) {
     if (err) {
         //connection.release();
         console.log("PB CONNECTING DB");
@@ -46,7 +46,7 @@ connection.getConnection(function (err, conn) {
         console.log("DEBUG: SEEMS TO WORK");
     }
 
-});
+});*/
 
 
 app.get('/', function (req, res) {
@@ -58,19 +58,26 @@ app.get('/', function (req, res) {
 
 //    console.log("INSIDE DATABASES FUNCTION");
 
-    connection.getConnection(function (err, conn) {
+connection.getConnection(function (err, conn)
+{
+    if (err)
+    {
+        throw err;
+    }
+    else
+    {
+            conn.query('SHOW DATABASES', function (err, results) {
+                if (err) throw err;
+                console.log(results);
+                console.log('END OF QUERY');
+                res.json(results);
+            });
 
-        if (err) throw err;
-        console.log(err);
+            connection.release();
+    }
 
-        conn.query('SHOW DATABASES', function (err, results) {
-            if (err) throw err;
-            console.log(results);
-            console.log('END OF QUERY');
-            res.json(results);
-        });
-        connection.release();
-    });
+});
+
 
 //});
 

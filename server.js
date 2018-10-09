@@ -12,10 +12,10 @@ app.use(bodyParser.urlencoded({
 }));
 
 
-///////
+/*
 var Users = require('./Routes/Users');
-
 app.use('/users', Users);
+*/
 
 var connection = mysql.createPool({
     connectionLimit: 100,
@@ -49,6 +49,10 @@ connection.getConnection(function (err, conn) {
 });
 
 
+app.get('/', function (req, res) {
+    res.send("Hello World !");
+});
+
 
 app.get('/showdatabases', function (req, res) {
 
@@ -63,6 +67,7 @@ app.get('/showdatabases', function (req, res) {
             if (err) throw err;
             console.log(results);
             console.log('END OF QUERY');
+            res.json(results);
         });
 
     });

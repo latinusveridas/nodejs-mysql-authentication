@@ -1,12 +1,16 @@
 var express = require('express');
 var cors = require('cors');
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
 var app = express();
-var mysql = require("mysql");
+var mysql = require('mysql');
 var port = process.env.PORT || 3000;
 
+//ADDED ON 09/10
+var http = require('http');
+
+
 app.use(bodyParser.json());
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -73,7 +77,7 @@ console.log("INSIDE DATABASES FUNCTION");
                     console.log('END OF QUERY');
                     res.json(results);
                 }
-                connection.release();
+                conn.release();
             })
         }
     })
